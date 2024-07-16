@@ -1,0 +1,12 @@
+# Test source files
+file(GLOB_RECURSE TEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+
+# Add test executable
+add_executable(${PROJECT_NAME}_tests ${TEST_SOURCES})
+
+# Link with the main project library/executable and GoogleTest
+target_link_libraries(${PROJECT_NAME}_tests gtest gtest_main)
+
+# Optionally, define test rules using CTest
+include(GoogleTest)
+gtest_discover_tests(${PROJECT_NAME}_tests)
