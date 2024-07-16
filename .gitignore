@@ -1,32 +1,157 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+## Build artifacts
+/build/
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
+*.exe
+*.out
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# IDE specific files
+# VSCode
+.vscode/
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/c_cpp_properties.json
+
+# CLion
+.idea/
+*.iml
+
+# Visual Studio
+.vscode/
+*.code-workspace
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.ncb
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.opendb
+*.VC.db
+
+# Xcode
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xcworkspace
+!default.xcworkspace
+*.xcuserstate
+!default.xcuserstate
+project.xcworkspace/
+xcuserdata/
+
+# Qt Creator
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.qmlproject.user
+*.qmlproject.user.*
+*.cproject
+*.cproject.user.*
+*.project
+*.project.user.*
+*.build
+*.qtc_clangd/
+.cache
+
+# General IDE files
+*.sublime-project
+*.sublime-workspace
+*.session
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.pid
+*.seed
+*.bak
+*.old
+*.orig
+*.rej
+
+# Binary files
+*.bin
+*.hex
+*.elf
+
+# Generated files
+*.d
+*.lst
+
+# Coverage and profiling files
+*.gcno
+*.gcda
+*.gcov
+*.gcda.*
+*.gcno.*
+*.profraw
+*.profdata
+
+# Other
+*.patch
+*.diff
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tgz
+*.zip
+*.7z
+*.rar
+
+# Application specific
+*.manifest
+*.module
+*.import
+*.output
+
+# Lock files
+*.lock
+
+# Python environment files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+VENV/
+
+# Backup files
+*~
+# Ends with tilde
+*.bak
+# Ends with .bak
+*.bak.*
+# Contains .bak.
