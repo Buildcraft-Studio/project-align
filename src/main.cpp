@@ -25,7 +25,7 @@ int main() {
 
     std::cout << line << std::endl;
 
-    Circle c(Point2D(3, 4), 5);
+    Circle2D c(Point2D(3, 4), 5);
     
     std::cout << "Circle center: " << c.getCenter() << std::endl;
     std::cout << "Circle radius: " << c.getRadius() << std::endl;

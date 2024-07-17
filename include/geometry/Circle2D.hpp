@@ -1,15 +1,16 @@
 #include <cmath>
 #include <iostream>
+#include "Point2D.hpp"
 
 
 
-class Circle {
+class Circle2D {
 private:
     Point2D center;
     float radius;
 
 public:
-    Circle(const Point2D& center = Point2D(), float radius = 0)
+    Circle2D(const Point2D& center = Point2D(), float radius = 0)
         : center(center), radius(radius) {}
 
     void setCenter(const Point2D& center) {
