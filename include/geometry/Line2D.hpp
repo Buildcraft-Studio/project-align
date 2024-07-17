@@ -1,26 +1,25 @@
-#ifndef LINE2D_HPP
-#define LINE2D_HPP
+#pragma once
 
+#include <iostream>
 #include "Point2D.hpp"
 
 class Line2D {
+private:
+    Point2D start, end;
+
 public:
-    float a;
-    float b;
-    float c; // Coefficients for the line equation ax + by + c = 0
+    Line2D(const Point2D& start, const Point2D& end) : start(start), end(end) {}
 
-    Line2D(float a = 1, float b = -1, float c = 0) : a(a), b(b), c(c) {}
-
-    // Constructor to create a line from two points
-    Line2D(const Point2D& p1, const Point2D& p2) {
-        a = p2.y - p1.y;
-        b = p1.x - p2.x;
-        c = a * p1.x + b * p1.y;
+    const Point2D& getStart() const {
+        return start;
     }
 
-    bool isPointOnLine(const Point2D& p) const {
-        return (a * p.x + b * p.y + c) == 0;
+    const Point2D& getEnd() const {
+        return end;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Line2D& l) {
+        os << "Line: " << l.start << " -> " << l.end;
+        return os;
     }
 };
-
-#endif // LINE2D_HPP
