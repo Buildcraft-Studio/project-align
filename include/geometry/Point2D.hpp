@@ -1,4 +1,5 @@
-#pragma once
+#ifndef POINT2D_HPP
+#define POINT2D_HPP
 
 #include <iostream>
 
@@ -7,6 +8,9 @@ public:
     float x, y;
 
     Point2D(float x = 0, float y = 0) : x(x), y(y) {}
+
+    float getX() const { return x; }
+    float getY() const { return y; }
 
     Point2D operator+(const Point2D& p) const {
         return Point2D(x + p.x, y + p.y);
@@ -21,3 +25,4 @@ public:
         return os;
     }
 };
+#endif // POINT2D_HPP

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR2D_HPP
+#define VECTOR2D_HPP
 
 #include <iostream>
 #include "Point2D.hpp"
@@ -31,3 +32,4 @@ public:
     }
 };
 
+#endif // VECTOR2D_HPP

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef POLYGON_HPP
+#define POLYGON_HPP
 
 #include <vector>
 #include "Point2D.hpp"
@@ -26,3 +27,4 @@ public:
         return os;
     }
 };
+#endif // POLYGON_HPP

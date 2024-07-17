@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LINE2D_HPP
+#define LINE2D_HPP
 
 #include <iostream>
 #include "Point2D.hpp"
@@ -23,3 +24,4 @@ public:
         return os;
     }
 };
+#endif // LINE2D_HPP
