@@ -1,50 +1,80 @@
-#include <iostream>
-#include <vector>
-#include "geometry/Point2D.hpp"
-#include "geometry/Line2D.hpp"
-#include "geometry/Vector2D.hpp"
-#include "geometry/Polygon.hpp"
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include <GLFW/glfw3.h>
+#include <glad/glad.h> 
+#include <iostream>      // Include iostream for std::cerr and std::endl
 
-int main()
-{
-    Vector2D v1(3, 4);
-    Vector2D v2(1, 2);
+void InitImGui(GLFWwindow* window) {
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui::StyleColorsDark();
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 130");
+}
 
-    Vector2D v3 = v1 + v2;
-    Vector2D v4 = v1 - v2;
+void MainLoop(GLFWwindow* window) {
+    while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
 
-    std::cout << "v3: (" << v3.x << ", " << v3.y << ")\n";
-    std::cout << "v4: (" << v4.x << ", " << v4.y << ")\n";
-    std::cout << "Dot product: " << v1.dot(v2) << "\n";
-    std::cout << "Magnitude of v1: " << v1.magnitude() << "\n";
-    Vector2D v1Normalized = v1.normalize();
-    std::cout << "Normalized v1: (" << v1Normalized.x << ", " << v1Normalized.y << ")\n";
+        ImGui::Begin("Hello, world!");
+        ImGui::Text("This is some useful text.");
+        ImGui::End();
 
-    Point2D p1(1, 2);
-    Point2D p2(3, 4);
-    Line2D line(p1, p2);
-
-    std::cout << "Line equation: " << line.a << "x + " << line.b << "y + " << line.c << " = 0\n";
-
-    Point2D testPoint(2, 3);
-    if (line.isPointOnLine(testPoint))
-    {
-        std::cout << "Point (" << testPoint.x << ", " << testPoint.y << ") is on the line.\n";
+        ImGui::Render();
+        int display_w, display_h;
+        glfwGetFramebufferSize(window, &display_w, &display_h);
+        glViewport(0, 0, display_w, display_h);
+        glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        glfwSwapBuffers(window);
     }
-    else
-    {
-        std::cout << "Point (" << testPoint.x << ", " << testPoint.y << ") is not on the line.\n";
+}
+
+int main(int argc, char* argv[]) {
+    // Initialize GLFW
+    if (!glfwInit()) {
+        std::cerr << "Failed to initialize GLFW!" << std::endl;
+        return -1;
     }
 
-    std::vector<Point2D> vertices = {
-        Point2D(0, 0),
-        Point2D(4, 0),
-        Point2D(4, 3),
-        Point2D(0, 3)
-    };
-    Polygon polygon(vertices);
+    // Create a windowed mode window and its OpenGL context
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "ImGui Example", NULL, NULL);
+    if (!window) {
+        glfwTerminate();
+        std::cerr << "Failed to create GLFW window!" << std::endl;
+        return -1;
+    }
 
-    std::cout << "Perimeter: " << polygon.perimeter() << std::endl;
-    std::cout << "Area: " << polygon.area() << std::endl;
+    // Make the window's context current
+    glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
+
+    // Initialize glad
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Failed to initialize OpenGL loader!" << std::endl;
+        return -1;
+    }
+
+    // Initialize ImGui
+    InitImGui(window);
+
+    // Enter the main loop
+    MainLoop(window);
+
+    // Cleanup ImGui
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
+    // Cleanup GLFW
+    glfwDestroyWindow(window);
+    glfwTerminate();
+
     return 0;
 }
