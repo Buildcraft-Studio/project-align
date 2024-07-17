@@ -9,7 +9,7 @@ class Polygon {
 public:
     std::vector<Point2D> vertices;
 
-    Polygon(const std::vector<Point2D>& vertices) : vertices(vertices) {}
+    explicit Polygon(const std::vector<Point2D>& vertices) : vertices(vertices) {}
 
     // Function to calculate the perimeter of the polygon
     double perimeter() const {
@@ -23,7 +23,8 @@ public:
 
     // Function to calculate the area of the polygon using the Shoelace formula
     double area() const {
-        double sum1 = 0.0, sum2 = 0.0;
+        double sum1 = 0.0;
+        double sum2 = 0.0;
         for (size_t i = 0; i < vertices.size(); ++i) {
             size_t next = (i + 1) % vertices.size();
             sum1 += vertices[i].x * vertices[next].y;

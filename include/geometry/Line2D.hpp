@@ -5,7 +5,9 @@
 
 class Line2D {
 public:
-    float a, b, c; // Coefficients for the line equation ax + by + c = 0
+    float a;
+    float b;
+    float c; // Coefficients for the line equation ax + by + c = 0
 
     Line2D(float a = 1, float b = -1, float c = 0) : a(a), b(b), c(c) {}
 
