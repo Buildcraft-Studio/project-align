@@ -1,50 +1,41 @@
 #include <iostream>
-#include <vector>
-#include "geometry/Point2D.hpp"
-#include "geometry/Line2D.hpp"
-#include "geometry/Vector2D.hpp"
-#include "geometry/Polygon.hpp"
+#include "Point2D.hpp"
+#include "Vector2D.hpp"
+#include "Polygon.hpp"
+#include "Line2D.hpp"
+#include "Circle2D.hpp"
+#include "Collision.hpp"
 
-int main()
-{
-    Vector2D v1(3, 4);
-    Vector2D v2(1, 2);
-
-    Vector2D v3 = v1 + v2;
-    Vector2D v4 = v1 - v2;
-
-    std::cout << "v3: (" << v3.x << ", " << v3.y << ")\n";
-    std::cout << "v4: (" << v4.x << ", " << v4.y << ")\n";
-    std::cout << "Dot product: " << v1.dot(v2) << "\n";
-    std::cout << "Magnitude of v1: " << v1.magnitude() << "\n";
-    Vector2D v1Normalized = v1.normalize();
-    std::cout << "Normalized v1: (" << v1Normalized.x << ", " << v1Normalized.y << ")\n";
-
-    Point2D p1(1, 2);
-    Point2D p2(3, 4);
-    Line2D line(p1, p2);
-
-    std::cout << "Line equation: " << line.a << "x + " << line.b << "y + " << line.c << " = 0\n";
-
-    Point2D testPoint(2, 3);
-    if (line.isPointOnLine(testPoint))
-    {
-        std::cout << "Point (" << testPoint.x << ", " << testPoint.y << ") is on the line.\n";
-    }
-    else
-    {
-        std::cout << "Point (" << testPoint.x << ", " << testPoint.y << ") is not on the line.\n";
-    }
-
-    std::vector<Point2D> vertices = {
-        Point2D(0, 0),
-        Point2D(4, 0),
-        Point2D(4, 3),
-        Point2D(0, 3)
-    };
+int main() {
+    // Create instances of Point2D, Circle, and Polygon
+    Point2D point(2.5, 3.5);
+    Circle2D circle(Point2D(5, 5), 4);
+    std::vector<Point2D> vertices = { Point2D(0, 0), Point2D(4, 0), Point2D(4, 4), Point2D(0, 4) };
     Polygon polygon(vertices);
 
-    std::cout << "Perimeter: " << polygon.perimeter() << std::endl;
-    std::cout << "Area: " << polygon.area() << std::endl;
+    // Perform collision checks
+    if (Collision::pointPoint(point, Point2D(2, 2))) {
+        std::cout << "Point-point collision detected!\n";
+    }
+
+    if (Collision::circleCircle(circle, Circle2D(Point2D(8, 8), 2))) {
+        std::cout << "Circle-circle collision detected!\n";
+    }
+
+    if (Collision::circlePoint(circle, Point2D(6, 5))) {
+        std::cout << "Circle-point collision detected!\n";
+    }
+
+    if (Collision::circlePolygon(circle, polygon)) {
+        std::cout << "Circle-polygon collision detected!\n";
+    }
+
+    if (Collision::pointInPolygon(Point2D(1, 1), polygon)) {
+        std::cout << "Point is inside polygon!\n";
+    }
+
+    // Additional collision checks as needed
+
+    return 0;
     return 0;
 }
