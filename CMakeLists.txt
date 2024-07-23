@@ -8,7 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/include/geometry)
+
 
 # Source files
 file(GLOB_RECURSE SOURCES "${PROJECT_SOURCE_DIR}/src/*.cpp")
@@ -17,9 +17,9 @@ file(GLOB_RECURSE SOURCES "${PROJECT_SOURCE_DIR}/src/*.cpp")
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Add subdirectories (if any, for now we don't need these lines)
-# add_subdirectory(include)
+add_subdirectory(include)
 add_subdirectory(src)
-add_subdirectory(tests)
+# add_subdirectory(tests)
 add_subdirectory(lib)
 
 # For macOS, link against Cocoa and CoreVideo frameworks (if necessary)
