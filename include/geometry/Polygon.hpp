@@ -2,29 +2,28 @@
 #define POLYGON_HPP
 
 #include <vector>
+#include <iostream>
 #include "Point2D.hpp"
 
-class Polygon {
+class Polygon
+{
 private:
-    std::vector<Point2D> vertices;
+    std::vector<Point2D> points;
 
 public:
-    Polygon(const std::vector<Point2D>& vertices) : vertices(vertices) {}
+    Polygon(const std::vector<Point2D> &points = {}) : points(points) {}
 
-    void addVertex(const Point2D& vertex) {
-        vertices.push_back(vertex);
-    }
+    void addPoint(const Point2D &point) { points.push_back(point); }
 
-    const std::vector<Point2D>& getVertices() const {
-        return vertices;
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, const Polygon& p) {
+    friend std::ostream &operator<<(std::ostream &os, const Polygon &polygon)
+    {
         os << "Polygon: ";
-        for (const auto& vertex : p.vertices) {
-            os << vertex << " ";
+        for (const auto &point : polygon.points)
+        {
+            os << point << " ";
         }
         return os;
     }
 };
+
 #endif // POLYGON_HPP

@@ -1,5 +1,6 @@
 ## Build artifacts
 /build/
+/win-build/
 *.o
 *.obj
 *.so

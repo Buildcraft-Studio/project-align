@@ -1,8 +1,10 @@
 #ifndef CIRCLE2D_HPP
 #define CIRCLE2D_HPP
+
 #include <cmath>
 #include <iostream>
 #include "Point2D.hpp"
+#include "math/Constants.hpp"
 
 class Circle2D
 {
@@ -36,12 +38,12 @@ public:
 
     float area() const
     {
-        return M_PI * radius * radius;
+        return static_cast<float>(Constants::PI) * radius * radius;
     }
 
     float circumference() const
     {
-        return 2 * M_PI * radius;
+        return 2 * static_cast<float>(Constants::PI) * radius;
     }
 };
 
