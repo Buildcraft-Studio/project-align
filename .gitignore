@@ -129,6 +129,9 @@ Desktop.ini
 *.zip
 *.7z
 *.rar
+*.gpg
+*.pgp
+
 
 # Application specific
 *.manifest

@@ -4,7 +4,6 @@
 #include <cmath>
 #include <iostream>
 #include "Point2D.hpp"
-#include "math/Constants.hpp"
 
 class Circle2D
 {
@@ -13,38 +12,18 @@ private:
     float radius;
 
 public:
-    Circle2D(const Point2D &center = Point2D(), float radius = 0)
+    Circle2D(const Point2D &center = Point2D(), float radius = 0.0f)
         : center(center), radius(radius) {}
 
-    void setCenter(const Point2D &center)
-    {
-        this->center = center;
-    }
+    void setCenter(const Point2D &center) { this->center = center; }
+    void setRadius(float radius) { this->radius = radius; }
 
-    void setRadius(float radius)
-    {
-        this->radius = radius;
-    }
+    float getRadius() const { return radius; }
+    Point2D getCenter() const { return center; }
 
-    float getRadius() const
-    {
-        return radius;
-    }
-
-    Point2D getCenter() const
-    {
-        return center;
-    }
-
-    float area() const
-    {
-        return static_cast<float>(Constants::PI) * radius * radius;
-    }
-
-    float circumference() const
-    {
-        return 2 * static_cast<float>(Constants::PI) * radius;
-    }
+    float area() const { return M_PI * radius * radius; }
+    float circumference() const { return 2 * M_PI * radius; }
 };
 
 #endif // CIRCLE2D_HPP
+

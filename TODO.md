@@ -6,11 +6,12 @@ Make a working game engine using C++
 
 ## Task
 
-| Name  | Status |
+| Name | Status |
 | - | - |
 | Basic geometry  | Completed ✅ |
-| Physic engine | Worked On 🛠️ |
+| Basic Physic engine | Completed ✅ |
+| Animation system | Note Made ❔|
 | Readering engine| Failed ⛔ |
 | Sound API | Not Made ❔ |
 | Furnace Tracker support | Not Made ❔|
-| Embedded language|  Note Made ❔ |
+| Embedded language| Note Made ❔ |
