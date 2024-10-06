@@ -1,11 +1,10 @@
-# Core ALIGN engine source files
-file(GLOB_RECURSE ALIGN_SRC CONFIGURE_DEPENDS *.cpp *.h)
+# src/CMakeLists.txt
 
-# Create the ALIGN game engine library
-add_library(ALIGNEngine STATIC ${ALIGN_SRC})
+# Define the engine source files
+file(GLOB_RECURSE ENGINE_SRC CONFIGURE_DEPENDS *.cpp *.h)
 
-# Link third-party libraries if necessary
-target_link_libraries(ALIGNEngine PUBLIC ${THIRD_PARTY_LIBRARIES})
+# Create the GameEngine library target
+add_library(GameEngine STATIC ${ENGINE_SRC})
 
-# Include directories for the ALIGN engine
-target_include_directories(ALIGNEngine PUBLIC ../include)
+# Link any necessary libraries to the GameEngine (if any)
+target_link_libraries(GameEngine PUBLIC ${THIRD_PARTY_LIBRARIES})
