@@ -17,3 +17,4 @@ RUN mkdir build && cd build && cmake .. && msbuild.exe MyProject.sln
 
 # Command to run tests
 CMD ["C:\\app\\build\\your_test_executable.exe"]
+

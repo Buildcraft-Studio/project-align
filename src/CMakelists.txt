@@ -1,0 +1,11 @@
+# Core ALIGN engine source files
+file(GLOB_RECURSE ALIGN_SRC CONFIGURE_DEPENDS *.cpp *.h)
+
+# Create the ALIGN game engine library
+add_library(ALIGNEngine STATIC ${ALIGN_SRC})
+
+# Link third-party libraries if necessary
+target_link_libraries(ALIGNEngine PUBLIC ${THIRD_PARTY_LIBRARIES})
+
+# Include directories for the ALIGN engine
+target_include_directories(ALIGNEngine PUBLIC ../include)
