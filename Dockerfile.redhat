@@ -1,0 +1,19 @@
+# Use an official Red Hat-based image
+FROM fedora:36
+
+# Install dependencies
+RUN dnf update -y && \
+    dnf install -y gcc gcc-c++ make cmake git && \
+    dnf clean all
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the project into the container
+COPY . /app
+
+# Build the project
+RUN mkdir build && cd build && cmake .. && make
+
+# Command to run your tests
+CMD ["./build/your_test_executable"]

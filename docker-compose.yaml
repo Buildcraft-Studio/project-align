@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  debian-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.debian
+    container_name: cpp_project_debian
+    command: ["./build/your_test_executable"]
+    working_dir: /app
+    volumes:
+      - .:/app
+
+  redhat-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.redhat
+    container_name: cpp_project_redhat
+    command: ["./build/your_test_executable"]
+    working_dir: /app
+    volumes:
+      - .:/app
+
+  windows-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.windows
+    container_name: cpp_project_windows
+    command: ["C:\\app\\build\\your_test_executable.exe"]
+    working_dir: C:\\app
+    volumes:
+      - .:/app

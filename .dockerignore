@@ -1,0 +1,20 @@
+# Ignore build artifacts
+/build
+/out
+*.o
+*.obj
+*.so
+*.exe
+*.out
+
+# Ignore Git and version control files
+.git
+.gitignore
+
+# Ignore IDE config files
+.vscode
+*.code-workspace
+
+# Ignore unnecessary local files
+*.log
+*.tmp

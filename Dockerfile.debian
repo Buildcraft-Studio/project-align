@@ -1,0 +1,19 @@
+# Use an official Debian-based image
+FROM ubuntu:20.04
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y build-essential cmake g++ git && \
+    apt-get clean
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the project into the container
+COPY . /app
+
+# Build the project
+RUN mkdir build && cd build && cmake .. && make
+
+# Command to run your tests
+CMD ["./build/your_test_executable"]

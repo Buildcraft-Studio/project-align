@@ -1,32 +1,72 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+# Ignore object files, binaries, and libraries
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
 *.exe
 *.out
-*.app
+*.dll
+*.so
+*.dylib
+
+# Ignore compiled static and shared libraries
+*.lib
+*.a
+
+# Ignore compiled dynamic libraries
+*.dll
+*.dylib
+*.so
+
+# Ignore CMake build folders
+/CMakeFiles
+/CMakeCache.txt
+/build/
+out/
+
+# Ignore Visual Studio generated files
+*.vcxproj*
+*.sln
+*.vcproj*
+
+# Ignore Code::Blocks workspace and project files
+*.layout
+*.depend
+*.cbp
+*.workspace
+
+# Ignore QtCreator project files
+*.pro.user
+*.qmake.stash
+
+# Ignore macOS-specific files
+.DS_Store
+
+# Ignore backup and temporary files
+*.bak
+*.swp
+*.tmp
+*~
+
+# Ignore log files
+*.log
+
+# Ignore debugging files
+*.dSYM/
+*.pdb
+*.stackdump
+
+# Ignore system files (like Thumbs.db for Windows)
+Thumbs.db
+
+# Ignore Python virtual environments (in case you're using Python scripts)
+__pycache__/
+*.py[cod]
+
+# VSCode specific files
+.vscode/
+.vscode/*
+
+# Ignore workspace settings
+.code-workspace
+
+# Ignore local history plugin data
+.history/
