@@ -1,6 +1,7 @@
 #!/bin/bash
 
-root="$(pwd)"
+# Set the root directory relative to the script's location
+root="$(dirname "$(realpath "$0")")"
 furnacepath="${root}/furnace"
 buildpath="${furnacepath}/build"
 executable="${root}/exe"
