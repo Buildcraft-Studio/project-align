@@ -3,8 +3,21 @@
 # Define the engine source files
 file(GLOB_RECURSE ENGINE_SRC CONFIGURE_DEPENDS *.cpp *.h)
 
-# # Create the GameEngine library target
-# add_library(GameEngine STATIC ${ENGINE_SRC})
+# Create the GameEngine library target
+add_library(GameEngine STATIC ${ENGINE_SRC})
 
-# # Link any necessary libraries to the GameEngine (if any)
+# Include directories for the GameEngine library
+target_include_directories(GameEngine 
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}  # Include the src directory itself
+        ${CMAKE_CURRENT_SOURCE_DIR}/../include  # Include the include directory
+)
+
+# Link any necessary libraries to the GameEngine (if any)
+# Uncomment and specify your third-party libraries here
 # target_link_libraries(GameEngine PUBLIC ${THIRD_PARTY_LIBRARIES})
+
+# Optionally, set the output directory for the library
+set_target_properties(GameEngine PROPERTIES 
+    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+)
