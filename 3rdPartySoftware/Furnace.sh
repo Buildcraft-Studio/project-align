@@ -27,6 +27,10 @@ if [ -f "CMakeCache.txt" ]; then
     rm CMakeCache.txt
 fi
 
+# License
+if [  -f "${buildpath}/LICENSE" ]; then
+    rm -rf "${buildpath}/LICENSE"
+fi
 # Build project
 cmake ../
 make -j$(nproc)
@@ -35,5 +39,6 @@ make -j$(nproc)
 cd "$root" || exit
 cp -rf "${buildpath}/furnace" "$executable"
 cp -rf "${buildpath}/extern" "$executable"
+cp "${furnacepath}/LICENSE" "$executable"
 
 echo "Build complete"
