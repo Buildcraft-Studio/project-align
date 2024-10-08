@@ -21,6 +21,7 @@
 /CMakeCache.txt
 /build/
 out/
+exe/
 
 # Ignore Visual Studio generated files
 *.vcxproj*
