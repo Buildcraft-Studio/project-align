@@ -9,10 +9,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Specify output directories for ALIGN project
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})  # Executables will be in the build directory
 
 # Include directories
 include_directories(include)
+include_directories(include/game)
+include_directories(include/engine)
 
 # Option to skip building Furnace
 option(SKIP_BUILD_FURNACE "Skip building Furnace" OFF)
