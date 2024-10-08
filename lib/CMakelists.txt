@@ -1,6 +1,6 @@
-# Example of adding libraries (like Lua, SDL, or any other third-party library)
-# External libraries can be added here as well
-add_library(MyLib STATIC mylib.cpp)
+# # Example of adding libraries (like Lua, SDL, or any other third-party library)
+# # External libraries can be added here as well
+# add_library(MyLib STATIC mylib.cpp)
 
-# Link them to the main game engine
-target_link_libraries(GameEngine PUBLIC MyLib)
+# # Link them to the main game engine
+# target_link_libraries(GameEngine PUBLIC MyLib)

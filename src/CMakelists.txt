@@ -3,8 +3,8 @@
 # Define the engine source files
 file(GLOB_RECURSE ENGINE_SRC CONFIGURE_DEPENDS *.cpp *.h)
 
-# Create the GameEngine library target
-add_library(GameEngine STATIC ${ENGINE_SRC})
+# # Create the GameEngine library target
+# add_library(GameEngine STATIC ${ENGINE_SRC})
 
-# Link any necessary libraries to the GameEngine (if any)
-target_link_libraries(GameEngine PUBLIC ${THIRD_PARTY_LIBRARIES})
+# # Link any necessary libraries to the GameEngine (if any)
+# target_link_libraries(GameEngine PUBLIC ${THIRD_PARTY_LIBRARIES})
