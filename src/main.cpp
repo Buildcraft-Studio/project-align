@@ -1,33 +1,16 @@
 #include <iostream>
-#include "physics.hpp"
-#include "vector2.hpp"
-
-// Simple render function (you can replace it with your actual rendering logic)
-void renderPlayer(const vector2 &position)
-{
-	std::cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
-}
+#include "engine/geometry/point.hpp" // Include the Point class header
+#include "engine/geometry/rectangle.hpp" // Include the Rectangle class header
 
 int main() {
-    // Initialize player physics with a starting position
-    physics playerphysics(vector2(0, 0));
+    // Create a point for the origin of the rectangle
+    Point origin(1.0f, 2.0f); // Example coordinates for the rectangle's origin
 
-    // Simulate for 10 frames
-    for (int frame = 0; frame < 10; ++frame) {
-        float deltaTime = 0.016f;  // Simulate 16 ms per frame (~60 FPS)
+    // Create a rectangle using the Point and its width and height
+    Rectangle rectangle(5.0f, 10.0f, origin); // Width 5, Height 10, Origin at (1, 2)
 
-        // Apply a force (e.g., jumping or moving)
-        if (frame == 2) {
-            vector2 jumpForce(0, -10);
-            playerphysics.applyForce(jumpForce);
-        }
-
-        // Update physics
-        playerphysics.update(deltaTime);
-
-        // Render player at updated position
-        renderPlayer(playerphysics.position);
-    }
+    // Output the number of sides for the rectangle
+    std::cout << "Rectangle has " << rectangle.getNumberOfSides() << " sides.\n";
 
     return 0;
 }

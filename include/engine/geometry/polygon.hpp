@@ -4,13 +4,14 @@
 #include <vector>
 #include "geometry/point.hpp"
 
-class polygon {
+class Polygon {
 public:
-    std::vector<point> vertices;
+    Polygon(const std::vector<Point>& points);
+    void addPoint(const Point& point);
+    int getNumberOfSides() const;
 
-    polygon(const std::vector<point>& points);
-
-    float perimeter() const;
+private:
+    std::vector<Point> vertices; // Store the points (vertices) of the polygon
 };
 
-#endif
+#endif // POLYGON_HPP

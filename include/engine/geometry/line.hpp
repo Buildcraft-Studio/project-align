@@ -1,16 +1,18 @@
 #ifndef LINE_HPP
 #define LINE_HPP
 
-#include "geometry/point.hpp"
+#include "point.hpp"  // Include point header to use Point class
 
-class line {
+class Line {
 public:
-    point start, end;
+    Line(Point p1, Point p2) : p1(p1), p2(p2) {}
 
-    line();
-    line(const point& start, const point& end);
-
+    // Declare the length function
     float length() const;
+
+private:
+    Point p1;
+    Point p2;
 };
 
-#endif
+#endif // LINE_HPP

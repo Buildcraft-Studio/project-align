@@ -3,12 +3,15 @@
 
 #include "geometry/polygon.hpp"
 
-class square : public polygon {
+class Square : public Polygon {
 public:
-    float side_length;
+    // Constructor
+    Square(float length);
 
-    square(float side_length);
     float area() const;
+
+private:
+    float side_length; // Define side_length
 };
 
-#endif
+#endif // SQUARE_HPP

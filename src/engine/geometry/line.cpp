@@ -1,10 +1,8 @@
 #include "geometry/line.hpp"
 #include <cmath>
 
-line::line() : start(point()), end(point()) {}
-
-line::line(const point& start_val, const point& end_val) : start(start_val), end(end_val) {}
-
-float line::length() const {
-    return start.distance_to(end);
+float Line::length() const {
+    float dx = p2.getX() - p1.getX();
+    float dy = p2.getY() - p1.getY();
+    return std::sqrt(dx * dx + dy * dy);
 }

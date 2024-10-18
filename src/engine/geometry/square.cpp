@@ -1,12 +1,14 @@
 #include "geometry/square.hpp"
 
-square::square(float length) : polygon({
-    point(0, 0),
-    point(length, 0),
-    point(length, length),
-    point(0, length)
+// Constructor
+Square::Square(float length) : Polygon({
+    Point(0, 0), 
+    Point(length, 0), 
+    Point(length, length), 
+    Point(0, length)
 }), side_length(length) {}
 
-float square::area() const {
+// Calculate the area of the square
+float Square::area() const {
     return side_length * side_length;
 }

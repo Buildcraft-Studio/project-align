@@ -1,14 +1,18 @@
 #ifndef POINT_HPP
 #define POINT_HPP
 
-class point {
+class Point {
+private:
+    float x;
+    float y;
+
 public:
-    float x, y;
+    // Constructor definition (inline)
+    Point(float x_val, float y_val) : x(x_val), y(y_val) {}
 
-    point();
-    point(float x_val, float y_val);
-
-    float distance_to(const point& other) const;
+    // Getters for x and y (optional)
+    float getX() const { return x; }
+    float getY() const { return y; }
 };
 
-#endif
+#endif // POINT_HPP

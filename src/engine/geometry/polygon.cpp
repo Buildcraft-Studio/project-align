@@ -1,15 +1,14 @@
 #include "geometry/polygon.hpp"
-#include "geometry/line.hpp"
 
-polygon::polygon(const std::vector<point>& points) : vertices(points) {}
+// Constructor
+Polygon::Polygon(const std::vector<Point>& points) : vertices(points) {}
 
-float polygon::perimeter() const {
-    float perimeter = 0;
-    for (size_t i = 0; i < vertices.size(); ++i) {
-        point current = vertices[i];
-        point next = vertices[(i + 1) % vertices.size()];
-        line edge(current, next);
-        perimeter += edge.length();
-    }
-    return perimeter;
+// Add a point to the polygon
+void Polygon::addPoint(const Point& point) {
+    vertices.push_back(point);
+}
+
+// Get the number of sides of the polygon
+int Polygon::getNumberOfSides() const {
+    return vertices.size();
 }
