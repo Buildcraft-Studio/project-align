@@ -1,32 +1,29 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+# .gitignore
+# Ignore build files
+/build/
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
 *.so
-*.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
+*.dylib
 *.exe
-*.out
-*.app
+
+# Ignore CMake cache and build files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Ignore editor files
+*.suo
+*.user
+*.userosscache
+*.sln
+*.vcxproj*
+*.DS_Store
+.idea/
+.vscode/
+
+# Ignore logs and other artifacts
+*.log
+*.tmp
