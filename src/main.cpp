@@ -1,36 +1,31 @@
-//# Example entry point src/main.cpp
-#include "physics/physics.h"
-#include "audio/audio.h"
-#include "utils/utils.h"
-//#include <furnace/furnace.h>
-
 #include <iostream>
-#include <iomanip> // For formatting
+#include "math/geometry.h"
 
 int main() {
-    std::string user_input;
+    using namespace Geometry;
 
-    // Create a menu
-    std::cout << "=====================================\n";
-    std::cout << "           Welcome to My App         \n";
-    std::cout << "=====================================\n";
-    std::cout << "1. Start Game\n";
-    std::cout << "2. Settings\n";
-    std::cout << "3. Exit\n";
-    std::cout << "=====================================\n";
-    std::cout << "Enter your choice: ";
+    // Circle example
+    Point circleCenter(5, 5);
+    Circle circle(circleCenter, 3);
+    circle.display();
+    std::cout << "\nArea: " << circle.area();
+    std::cout << "\nPerimeter: " << circle.perimeter();
+    std::cout << "\nContains Point (7, 5): " << (circle.containsPoint(Point(7, 5)) ? "Yes" : "No") << "\n";
 
-    std::cin >> user_input;
+    // Rectangle example
+    Point rectTopLeft(0, 10);
+    Rectangle rectangle(rectTopLeft, 5, 3);
+    rectangle.display();
+    std::cout << "\nArea: " << rectangle.area();
+    std::cout << "\nPerimeter: " << rectangle.perimeter();
+    std::cout << "\nContains Point (2, 8): " << (rectangle.containsPoint(Point(2, 8)) ? "Yes" : "No") << "\n";
 
-    if (user_input == "1") {
-        std::cout << "Starting the game...\n";
-    } else if (user_input == "2") {
-        std::cout << "Opening settings...\n";
-    } else if (user_input == "3") {
-        std::cout << "Exiting the program. Goodbye!\n";
-    } else {
-        std::cout << "Invalid choice! Please try again.\n";
-    }
+    // Triangle example
+    Triangle triangle(Point(0, 0), Point(5, 0), Point(0, 5));
+    triangle.display();
+    std::cout << "\nArea: " << triangle.area();
+    std::cout << "\nPerimeter: " << triangle.perimeter();
+    std::cout << "\nContains Point (2, 2): " << (triangle.containsPoint(Point(2, 2)) ? "Yes" : "No") << "\n";
 
     return 0;
 }
