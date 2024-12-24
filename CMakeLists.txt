@@ -1,4 +1,3 @@
-# CMakeLists.txt
 cmake_minimum_required(VERSION 3.26)
 
 # Project name
@@ -14,22 +13,27 @@ add_subdirectory(src)
 # Include directories
 include_directories(include)
 
-# # External libraries
-# set(FURNACE_PATH "./3rdPartySoftware/depend/furnace")
-# include_directories(${FURNACE_PATH}/include)
-# link_directories(${FURNACE_PATH}/lib)
-
 # Collect all source files recursively for the library
 file(GLOB_RECURSE ENGINE_SOURCES
   ${CMAKE_SOURCE_DIR}/src/*.cpp
   ${CMAKE_SOURCE_DIR}/src/*.h
 )
 
+# Platform-specific setup
+if(WIN32)
+    # Windows-specific paths and settings
+    set(LUA_INCLUDE_DIR "C:/lua/include")  # Replace with your Lua installation path
+    set(LUA_LIBRARIES "C:/lua/lib/lua54.lib")  # Replace with your Lua .lib file
+    include_directories(${LUA_INCLUDE_DIR})
+    link_directories("C:/lua/lib")
+elseif(UNIX)
+    # Linux-specific paths and settings
+    find_package(Lua REQUIRED)
+    include_directories(${LUA_INCLUDE_DIR})
+    link_directories(${LUA_LIBRARY_DIR})
+    set(PLATFORM_LIBS dl)  # Dynamic linker library required on Linux
+endif()
 
-# Find Lua library and headers
-find_package(Lua REQUIRED)
-
-# Add the executable
 # Create a static library for the engine
 add_library(My2DEngine STATIC ${ENGINE_SOURCES})
 
@@ -38,21 +42,5 @@ target_include_directories(My2DEngine PUBLIC
   ${CMAKE_SOURCE_DIR}/include
 )
 
-# Link external libraries if needed
-# Uncomment and set FURNACE_PATH correctly to link the external library
-# target_link_libraries(My2DEngine PRIVATE ${FURNACE_PATH}/lib/libfurnace.a)
-
-# Include directories for Lua
-include_directories(/usr/local/include)  # Adjust this path if Lua is installed elsewhere
-
-# Link directories for Lua
-link_directories(/usr/local/lib)        # Adjust this path if needed
-
-
 # Add an executable for the project
-# Replace "main.cpp" with the path to your executable's main source file
-add_executable(My2DGame ${CMAKE_SOURCE_DIR}/src/main.cpp)
-
-# Link the My2DEngine library to the executable
-target_link_libraries(My2DGame PRIVATE lua dl)
-target_link_libraries(My2DGame PRIVATE My2DEngine)
+# Replace "main.cpp" with the path to your
