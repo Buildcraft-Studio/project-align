@@ -1,36 +1,17 @@
-//# Example entry point src/main.cpp
-#include "physics/physics.h"
-#include "audio/audio.h"
-#include "utils/utils.h"
-//#include <furnace/furnace.h>
-
 #include <iostream>
-#include <iomanip> // For formatting
+#include "lua.hpp"
 
 int main() {
-    std::string user_input;
+    lua_State* L = luaL_newstate(); // Create a new Lua state
+    luaL_openlibs(L);              // Load Lua standard libraries
 
-    // Create a menu
-    std::cout << "=====================================\n";
-    std::cout << "           Welcome to My App         \n";
-    std::cout << "=====================================\n";
-    std::cout << "1. Start Game\n";
-    std::cout << "2. Settings\n";
-    std::cout << "3. Exit\n";
-    std::cout << "=====================================\n";
-    std::cout << "Enter your choice: ";
-
-    std::cin >> user_input;
-
-    if (user_input == "1") {
-        std::cout << "Starting the game...\n";
-    } else if (user_input == "2") {
-        std::cout << "Opening settings...\n";
-    } else if (user_input == "3") {
-        std::cout << "Exiting the program. Goodbye!\n";
-    } else {
-        std::cout << "Invalid choice! Please try again.\n";
+    // Execute a Lua script
+    if (luaL_dostring(L, "print('Hello from Lua!')")) {
+        std::cerr << "Error: " << lua_tostring(L, -1) << std::endl;
+        lua_pop(L, 1); // Remove error message from the stack
     }
 
+    // Clean up and close the Lua state
+    lua_close(L);
     return 0;
 }
