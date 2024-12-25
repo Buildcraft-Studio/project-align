@@ -1,17 +1,16 @@
 #include <iostream>
-#include "lua.hpp"
+#include <vector>
+#include "geometry/geometry.h"
 
 int main() {
-    lua_State* L = luaL_newstate(); // Create a new Lua state
-    luaL_openlibs(L);              // Load Lua standard libraries
+    std::vector<point> polygon = {{0, 0}, {4, 0}, {4, 4}, {0, 4}};
+    point testPoint(2, 2);
 
-    // Execute a Lua script
-    if (luaL_dostring(L, "print('Hello from Lua!')")) {
-        std::cerr << "Error: " << lua_tostring(L, -1) << std::endl;
-        lua_pop(L, 1); // Remove error message from the stack
+    if (is_inside_polygon(polygon, testPoint)) {
+        std::cout << "The point is inside the polygon.\n";
+    } else {
+        std::cout << "The point is outside the polygon.\n";
     }
 
-    // Clean up and close the Lua state
-    lua_close(L);
     return 0;
 }

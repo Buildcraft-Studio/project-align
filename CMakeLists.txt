@@ -7,9 +7,6 @@ project(My2DEngine VERSION 0.1)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add subdirectories
-add_subdirectory(src)
-
 # Include directories
 include_directories(include)
 
@@ -21,13 +18,14 @@ file(GLOB_RECURSE ENGINE_SOURCES
 
 # Platform-specific setup
 if(WIN32)
-    # Windows-specific paths and settings
-    set(LUA_INCLUDE_DIR "C:/lua/include")  # Replace with your Lua installation path
-    set(LUA_LIBRARIES "C:/lua/lib/lua54.lib")  # Replace with your Lua .lib file
+    # Windows-specific Lua configuration
+    set(LUA_INCLUDE_DIR "C:/lua/include" CACHE PATH "Lua include directory")
+    set(LUA_LIBRARIES "C:/lua/lib/lua54.lib" CACHE FILEPATH "Lua library file")
     include_directories(${LUA_INCLUDE_DIR})
     link_directories("C:/lua/lib")
+    set(PLATFORM_LIBS "")  # No extra platform-specific libraries for Windows
 elseif(UNIX)
-    # Linux-specific paths and settings
+    # Linux-specific Lua configuration
     find_package(Lua REQUIRED)
     include_directories(${LUA_INCLUDE_DIR})
     link_directories(${LUA_LIBRARY_DIR})
@@ -43,4 +41,7 @@ target_include_directories(My2DEngine PUBLIC
 )
 
 # Add an executable for the project
-# Replace "main.cpp" with the path to your
+add_executable(My2DGame ${CMAKE_SOURCE_DIR}/src/main.cpp)
+
+# Link libraries to the executable
+target_link_libraries(My2DGame PRIVATE My2DEngine ${LUA_LIBRARIES} ${PLATFORM_LIBS})
