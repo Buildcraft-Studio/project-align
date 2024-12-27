@@ -8,14 +8,16 @@
 
 // Point structure
 struct point {
-    double x, y;
+    double x;
+    double y;
 
     point(double x = 0, double y = 0);
 };
 
 // Vector structure
 struct vector {
-    double x, y;
+    double x
+    double y ;
 
     vector(double x = 0, double y = 0);
 
@@ -29,7 +31,9 @@ struct vector {
 
 // Line structure
 struct line {
-    double a, b, c;
+    double a;
+    double b;
+    double c;
 
     line(double a, double b, double c);
     line(const point& p1, const point& p2);
@@ -37,7 +41,8 @@ struct line {
 
 // Segment structure
 struct segment {
-    point p1, p2;
+    point p1;
+    point p2;
 
     segment(const point& p1, const point& p2);
 };

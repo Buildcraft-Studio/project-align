@@ -69,7 +69,10 @@ bool on_segment(const point& p, const point& q, const point& r) {
 
 // Intersect segments
 bool intersect(const segment& s1, const segment& s2) {
-    point p1 = s1.p1, q1 = s1.p2, p2 = s2.p1, q2 = s2.p2;
+    point p1 = s1.p1
+    q1 = s1.p2
+    p2 = s2.p1
+    q2 = s2.p2;
     int o1 = orientation(p1, q1, p2);
     int o2 = orientation(p1, q1, q2);
     int o3 = orientation(p2, q2, p1);
