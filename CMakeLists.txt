@@ -4,11 +4,8 @@ cmake_minimum_required(VERSION 3.26)
 project(My2DEngine VERSION 0.1)
 
 # Set C++ standard
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Include directories
-include_directories(include)
 
 # Collect all source files recursively for the library
 file(GLOB_RECURSE ENGINE_SOURCES
@@ -18,17 +15,24 @@ file(GLOB_RECURSE ENGINE_SOURCES
 
 # Platform-specific setup
 if(WIN32)
-    # Windows-specific Lua configuration
+    # Windows-specific configuration for Lua with MinGW
     set(LUA_INCLUDE_DIR "C:/lua/include" CACHE PATH "Lua include directory")
-    set(LUA_LIBRARIES "C:/lua/lib/lua54.lib" CACHE FILEPATH "Lua library file")
+    set(LUA_LIBRARIES "C:/lua/lib/liblua.a" CACHE FILEPATH "Lua static library file")
+    
     include_directories(${LUA_INCLUDE_DIR})
     link_directories("C:/lua/lib")
-    set(PLATFORM_LIBS "")  # No extra platform-specific libraries for Windows
+    
+    # No additional platform-specific libraries for Windows
+    set(PLATFORM_LIBS "") 
+
 elseif(UNIX)
-    # Linux-specific Lua configuration
+    # Linux/Unix-specific configuration for Lua
     find_package(Lua REQUIRED)
+    
     include_directories(${LUA_INCLUDE_DIR})
     link_directories(${LUA_LIBRARY_DIR})
+    
+    # Add required platform-specific libraries
     set(PLATFORM_LIBS dl)  # Dynamic linker library required on Linux
 endif()
 
