@@ -1,6 +1,7 @@
 # .gitignore
 # Ignore build files
 /build/
+/build-win/
 *.o
 *.obj
 *.so
