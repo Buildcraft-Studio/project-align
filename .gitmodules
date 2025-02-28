@@ -1,6 +1,3 @@
 [submodule "3rdPartySoftware/depend/furnace"]
 	path = 3rdPartySoftware/depend/furnace
 	url = https://github.com/tildearrow/furnace.git
-[submodule "libs/TTG"]
-	path = libs/TTG
-	url = https://github.com/Unk331/TTG
