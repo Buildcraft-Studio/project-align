@@ -1,5 +1,3 @@
-//uniID.h
-
 #ifndef UNIID_H
 #define UNIID_H
 
@@ -10,8 +8,9 @@ class uniID
 private:
     int seed;
 public:
-    void setSeed(int seed);
-    int getSeed();
+    uniID();  // Constructor
+    void setSeed(int newSeed);
+    int getSeed() const;
     int getUniID();
 };
 

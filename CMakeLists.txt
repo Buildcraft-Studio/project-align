@@ -47,5 +47,6 @@ target_include_directories(My2DEngine PUBLIC
 # Add an executable for the project
 add_executable(My2DGame ${CMAKE_SOURCE_DIR}/src/main.cpp)
 
+
 # Link libraries to the executable
-target_link_libraries(My2DGame PRIVATE My2DEngine ${LUA_LIBRARIES} ${PLATFORM_LIBS})
+target_link_libraries(My2DGame PRIVATE My2DEngine ${LUA_LIBRARIES} ${PLATFORM_LIBS} ${TTG_APP})
