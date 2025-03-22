@@ -1,25 +1,38 @@
-#ifndef HEARTBEAT_HPP 
+#ifndef HEARTBEAT_HPP
 #define HEARTBEAT_HPP
 
-#include <string> // Needed for std::string
+#include <string>
+#include <atomic>
 
-class Heartbeat
-{
+class Heartbeat {
 private:
-    int pulse = 0;  // Initialize member variables
-    bool isPulse = false;
-    bool debug = false; // Using bool instead of int for debug
-    // std::string name = "DebugOut";
-    std::string debugOut; // The string to hold debug output
+    std::atomic<bool> isPulse;
+    std::string debugOut;
 
 public:
-    void runPulse(bool debug); // Function to run the pulse
-    int getPulse() const;
-    void setPulse(int pulse);
-    bool getIsPulse() const;
-    void setIsPulse(bool isPulse);
-    std::string getDebugOut() const;
-    void setDebugOut(const std::string& debugOut); // Setter for debugOut
+    Heartbeat() : isPulse(false) {}
+
+    void runPulse(bool debug) {
+        if (!isPulse.load()) {
+            isPulse.store(true);  // Lock the pulse
+
+            // Debugging output
+            if (debug) {
+                debugOut = "Pulse triggered.";
+            }
+
+            // Set pulse for the next update
+            isPulse.store(false);  // Unlock pulse
+        }
+    }
+
+    bool getIsPulse() const {
+        return isPulse.load();
+    }
+
+    std::string getDebugOut() const {
+        return debugOut;
+    }
 };
 
 #endif // HEARTBEAT_HPP
