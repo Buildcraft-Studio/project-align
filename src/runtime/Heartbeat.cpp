@@ -1,43 +1,57 @@
-#include "Heartbeat.hpp"
 #include <iostream>
 #include <thread>
+#include <atomic>
+#include "Heartbeat.hpp"
+#include "Wait.h"  // Include Wait utility
+#include "TickSpeed.h"
 
-void Heartbeat::runPulse(bool debug) {
-    if (!isPulse) {
-        isPulse = true;  // Lock the pulse update
+// Shared Game State
+std::atomic<bool> running(true);
+float objectPosition = 0.0f;  // Example shared variable
 
-        // Debugging output
-        if (debug) {
-            debugOut = "Pulse value: " + std::to_string(pulse);  // Set debug output
-            Heartbeat::setDebugOut(debugOut);
-        }
+// Instantiate the Heartbeat and TickSpeed modules
+Heartbeat hb;
+TickSpeed tickSpeed(60);  // Fixed at 60 ticks per second
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(20)); // Short delay
-        pulse += 1;  // Increment pulse
-        isPulse = false;  // Unlock pulse update
+// Worker Thread: Handles Game Logic (e.g., Physics, AI, etc.)
+void gameLogicThread() {
+    while (running) {
+        tickSpeed.waitForNextTick();  // Ensure game logic runs at fixed TPS
+
+        // Update game logic (for example, physics)
+        objectPosition += 0.1f;
+
+        // Trigger heartbeat pulse after game update
+        hb.runPulse(true);  // Debug output can be checked here if needed
     }
 }
 
-int Heartbeat::getPulse() const {
-    return pulse;
+// Main Thread: Handles Rendering (or any other tasks)
+void renderLoop() {
+    while (running) {
+        // Wait for the next pulse to render
+        while (!hb.getIsPulse()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1)); // Polling delay
+        }
+
+        // Render frame (or update visual state)
+        std::cout << "Rendering Frame: Object Position = " << objectPosition << std::endl;
+    }
 }
 
-void Heartbeat::setPulse(int pulse) {
-    this->pulse = pulse;
-}
+int main() {
+    // Start game logic thread
+    std::thread logicThread(gameLogicThread);
 
-bool Heartbeat::getIsPulse() const {
-    return isPulse;
-}
+    std::cout << "Press Enter to exit...\n";
 
-void Heartbeat::setIsPulse(bool isPulse) {
-    this->isPulse = isPulse;
-}
+    // Start render loop (on main thread)
+    renderLoop();
 
-std::string Heartbeat::getDebugOut() const {
-    return debugOut;
-}
+    // Stop game logic thread
+    running = false;
+    logicThread.join();
 
-void Heartbeat::setDebugOut(const std::string& debugOut) {
-    this->debugOut = debugOut;
+    std::cout << "Program exited cleanly.\n";
+    return 0;
 }

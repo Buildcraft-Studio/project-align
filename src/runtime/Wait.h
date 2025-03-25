@@ -4,12 +4,14 @@
 #include <thread>
 #include <chrono>
 
-inline void Wait(int seconds)
-{
+// Wait for a specified number of seconds
+inline void Wait(int seconds) {
     std::this_thread::sleep_for(std::chrono::seconds(seconds));
 }
-inline void milliWait(int milliseconds)
-{
+
+// Wait for a specified number of milliseconds
+inline void milliWait(int milliseconds) {
     std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
+
 #endif // WAIT_H
