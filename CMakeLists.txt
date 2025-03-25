@@ -19,20 +19,27 @@ if(WIN32)
     set(LUA_INCLUDE_DIR "C:/lua/include" CACHE PATH "Lua include directory")
     set(LUA_LIBRARIES "C:/lua/lib/liblua.a" CACHE FILEPATH "Lua static library file")
     
-    include_directories(${LUA_INCLUDE_DIR})
-    link_directories("C:/lua/lib")
-    
-    # No additional platform-specific libraries for Windows
-    set(PLATFORM_LIBS "") 
+    if(EXISTS ${LUA_INCLUDE_DIR} AND EXISTS ${LUA_LIBRARIES})
+        include_directories(${LUA_INCLUDE_DIR})
+        link_directories("C:/lua/lib")
+    else()
+        message(FATAL_ERROR "Lua headers or libraries not found on Windows.")
+    endif()
+
+    set(PLATFORM_LIBS "") # No additional platform-specific libraries for Windows
 
 elseif(UNIX)
     # Linux/Unix-specific configuration for Lua
     find_package(Lua REQUIRED)
     
-    include_directories(${LUA_INCLUDE_DIR})
-    link_directories(${LUA_LIBRARY_DIR})
+    if(LUA_INCLUDE_DIR AND LUA_LIBRARY)
+        include_directories(${LUA_INCLUDE_DIR})
+        link_directories(${LUA_LIBRARY_DIR})
+    else()
+        message(FATAL_ERROR "Lua package not found or missing paths.")
+    endif()
     
-    # Add required platform-specific libraries
+    # Add required platform-specific libraries for Unix
     set(PLATFORM_LIBS dl)  # Dynamic linker library required on Linux
 endif()
 
@@ -46,7 +53,6 @@ target_include_directories(My2DEngine PUBLIC
 
 # Add an executable for the project
 add_executable(My2DGame ${CMAKE_SOURCE_DIR}/src/main.cpp)
-
 
 # Link libraries to the executable
 target_link_libraries(My2DGame PRIVATE My2DEngine ${LUA_LIBRARIES} ${PLATFORM_LIBS} ${TTG_APP})
