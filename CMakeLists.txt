@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Collect all source files recursively for the library
-file(GLOB_RECURSE ENGINE_SOURCES
+file(GLOB_RECURSIVE ENGINE_SOURCES
   ${CMAKE_SOURCE_DIR}/src/*.cpp
   ${CMAKE_SOURCE_DIR}/src/*.h
 )
@@ -43,6 +43,12 @@ elseif(UNIX)
     set(PLATFORM_LIBS dl)  # Dynamic linker library required on Linux
 endif()
 
+# Include directories for the engine
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+# Add wwWidgets subdirectory
+add_subdirectory(lib/wwWidgets)
+
 # Create a static library for the engine
 add_library(My2DEngine STATIC ${ENGINE_SOURCES})
 
@@ -51,8 +57,11 @@ target_include_directories(My2DEngine PUBLIC
   ${CMAKE_SOURCE_DIR}/include
 )
 
+# Link wwWidgets to the engine library (assuming wwWidgets target is defined)
+target_link_libraries(My2DEngine PUBLIC wwWidgets)
+
 # Add an executable for the project
 add_executable(My2DGame ${CMAKE_SOURCE_DIR}/src/main.cpp)
 
 # Link libraries to the executable
-target_link_libraries(My2DGame PRIVATE My2DEngine ${LUA_LIBRARIES} ${PLATFORM_LIBS} ${TTG_APP})
+target_link_libraries(My2DGame PRIVATE My2DEngine ${LUA_LIBRARIES} ${PLATFORM_LIBS})
