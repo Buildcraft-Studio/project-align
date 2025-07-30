@@ -28,3 +28,6 @@ Makefile
 # Ignore logs and other artifacts
 *.log
 *.tmp
+build/
+*.o
+*.a

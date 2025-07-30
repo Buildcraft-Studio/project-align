@@ -1,3 +1,6 @@
 [submodule "3rdPartySoftware/furnace"]
 	path = 3rdPartySoftware/furnace
 	url = https://github.com/tildearrow/furnace.git
+[submodule "lib/wwWidgets"]
+	path = lib/wwWidgets
+	url = https://github.com/wxWidgets/wxWidgets.git
