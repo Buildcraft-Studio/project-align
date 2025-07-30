@@ -3,4 +3,4 @@
 	url = https://github.com/tildearrow/furnace.git
 [submodule "lib/wwWidgets"]
 	path = lib/wwWidgets
-	url = https://github.com/wxWidgets/wxWidgets.git
+	url = https://github.com/TheDZhon/wwwidgets.git
